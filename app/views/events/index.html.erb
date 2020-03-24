@@ -1,8 +1,32 @@
-<h1><%= pluralize(@events.size, 'Event') %></h1>
-<ul>
-	<% @events.each do |event| %>
-		<li><%= event %></li>
-	<% end %>	
-</ul>
+<h1><%= pluralize(@events.size, 'Event') %> </h1>
+
+<% @events.each do |event| %>
+	<artical>
+		<header>
+			<strong><%= event.name%></strong>
+		</header>
+		<p>
+			<%= truncate(event.description, length: 27, separator: ' ') %>
+		</p>
+		<table>
+			<tr>
+				<th>When</th>
+				<td><%= event.starts_at %></td>
+			</tr>
+			
+			<tr>
+				<th>Where</th>
+				<td><%= event.location %></td>
+			</tr>
+			
+			<tr>
+				<th>Price:</th>
+				<td><%= event.price %></td>
+			</tr>
+		</table>
+	</artical><hr></hr>
+
+
+<% end %>
 
 
