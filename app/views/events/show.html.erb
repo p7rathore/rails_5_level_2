@@ -1,0 +1,24 @@
+<article>
+	<header>
+		<h1><%= @event.name %></h1>
+	</header>
+	<p>
+		<%= @event.description%>
+	</p>
+	<h3>When:</h3>
+	<P>
+		<%= @event.starts_at %>
+			
+	</P>
+	<h3>Where:</h3>
+	<P>
+		<%= @event.location %>
+			
+	</P>
+
+	<h3>Price:</h3>
+	<P>
+		<%= number_to_currency(@event.price) %>
+	</P>
+
+</article>
