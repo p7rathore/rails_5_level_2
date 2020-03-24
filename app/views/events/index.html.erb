@@ -3,7 +3,7 @@
 <% @events.each do |event| %>
 	<artical>
 		<header>
-			<strong><%= event.name%></strong>
+			<strong><%= link_to event.name, event %></strong>
 		</header>
 		<p>
 			<%= truncate(event.description, length: 27, separator: ' ') %>

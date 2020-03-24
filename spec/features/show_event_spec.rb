@@ -1,14 +1,11 @@
 require "rails_helper"
+require "/home/user14/rails_studio/events/spec/support/attributes"
+
 
 describe "Viewing an individual event" do
 	it "shows the event's details" do
-		event = Event.create(name:"BugSmash",
-							 location: "Denver",
-							 price: 10.00,
-							 description: "Fun evening of bug smashing!",
-							 starts_at: 10.days.from_now)
-
-		# visit "hhtp://www.example.com/events/#{event.id}"
+		event = Event.create(event_attributes(price: 10.00 ))
+		
 		visit event_url(event)
 		expect(page).to have_text(event.name)
 		expect(page).to have_text(event.location)
