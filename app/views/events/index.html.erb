@@ -6,6 +6,7 @@
 <% @events.each do |event| %>
 	<artical>
 		<header>
+			<%= image_for(event) %><br/>	
 			<strong><%= link_to event.name, event %></strong>
 		</header>
 		<p>
@@ -25,6 +26,11 @@
 			<tr>
 				<th>Price:</th>
 				<td><%= format_price(event) %></td>
+			</tr>
+
+			<tr>
+				<th>Capacity:</th>
+				<td><%= pluralize(event.capacity, 'spot') %></td>
 			</tr>
 		</table>
 	</artical><hr></hr>
