@@ -1,7 +1,7 @@
 <h1><%= pluralize(@events.size, 'Event') %> </h1>
 
 <% @events.each do |event| %>
-	<artical>
+	<article class="event">
 		<header>
 			<%= image_for(event) %><br/>	
 			<strong><%= link_to event.name, event %></strong>
@@ -30,7 +30,7 @@
 				<td><%= pluralize(event.capacity, 'spot') %></td>
 			</tr>
 		</table>
-	</artical><hr></hr>
+	</article><hr></hr>
 
 
 <% end %>
