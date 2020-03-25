@@ -27,7 +27,12 @@ class EventsController < ApplicationController
 		@event = Event.new(event_params)# but when use it then we  require write @event.save
 		@event.save
 		redirect_to @event #we also write redirect_to event_path(@event) its a show page url
+	end
 
+	def destroy
+		@event = Event.find(params[:id])
+		@event.destroy
+		redirect_to events_url
 	end
 
 	private 
