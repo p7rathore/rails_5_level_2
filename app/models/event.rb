@@ -21,4 +21,14 @@ class Event < ApplicationRecord
 		# where("starts_at >= ?", 15.days.ago).order("starts_at")
 		where("starts_at >= ?", Time.now).order("starts_at")
 	end
+
+	def spots_left
+		capacity - registrations.size
+	end
+
+	def sold_out?
+		spots_left.zero?
+	end
+
+
 end
