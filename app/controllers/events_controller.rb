@@ -14,8 +14,11 @@ class EventsController < ApplicationController
 
 	def update
 		@event = Event.find(params[:id])
-		@event.update(event_params)
-		redirect_to @event #we also write redirect_to event_path(@event) its a shoe page url
+		if ( @event.update(event_params) )
+			redirect_to @event 
+		else
+			render :edit
+		end
 	end
 
 	def new
@@ -23,10 +26,13 @@ class EventsController < ApplicationController
 	end
 
 	def create
-		# @event = Event.create(event_params) # when use it then we dont require write @event.save
-		@event = Event.new(event_params)# but when use it then we  require write @event.save
-		@event.save
-		redirect_to @event #we also write redirect_to event_path(@event) its a show page url
+		@event = Event.new(event_params)
+		if @event.save
+			redirect_to @event
+		else
+			render :new
+		end	 
+
 	end
 
 	def destroy
