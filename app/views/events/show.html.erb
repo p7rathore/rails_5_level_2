@@ -27,7 +27,9 @@
 	</p>
 
 	<%= link_to "who's registered?", event_registrations_path(@event) %><hr>
+
 </article>
+<%=link_to "Registration", new_event_registration_path(@event) %> |
 
 <%= link_to "Edit", edit_event_path(@event) %> |
 <%= link_to "Delete", event_path(@event), method: :delete, data: {confirm: "Are you sure?"} %>
