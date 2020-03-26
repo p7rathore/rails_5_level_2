@@ -12,7 +12,11 @@
   <body>
     <%= render 'layouts/header' %>
     <%= render "layouts/sidebar" %>
-
+    <% if flash[:notice] %>
+      <p class="flash notice">
+        <%= flash[:notice] %>
+      </p>
+    <% end %>  
     <%= yield %>
 
     <%= render "layouts/footer" %>
