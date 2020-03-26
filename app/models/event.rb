@@ -11,6 +11,7 @@ class Event < ApplicationRecord
 		with: /\w+\.(gif|png|jpg)\z/i, message: "must reference a GIF, JPG, or PNG image"	 
 	} 
 
+	has_many :registrations, dependent: :destroy 
 
 	def free?
 		price.blank? || price.zero? #we also write price == nil || price == 0
