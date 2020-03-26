@@ -1,4 +1,17 @@
 class Event < ApplicationRecord
+	validates :name, :location, :starts_at, presence: true 	
+
+	validates :description, length: {minimum: 15}
+
+	validates :price, numericality: {greater_then_or_equal_to: 0}
+
+	validates :capacity, numericality: {only_integer: true, greater_then: 0}
+
+	validates :image_file_name, allow_blank: true, format: {
+		with: /\w+\.(gif|png|jpg)\z/i, message: "must reference a GIF, JPG, or PNG image"	 
+	} 
+
+
 	def free?
 		price.blank? || price.zero? #we also write price == nil || price == 0
 	end
