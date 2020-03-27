@@ -5,6 +5,7 @@
   	<h1>
   		<% if current_user %>
   			<%=link_to current_user.name,current_user %>|
+        <%= link_to "signOut", session_path, method: :delete%>
   		<%else%>
   			<%= link_to "SignUp", signup_path %> |
 	  		<%= link_to "SignIn", signin_path %> 
