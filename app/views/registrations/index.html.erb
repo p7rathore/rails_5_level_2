@@ -2,6 +2,11 @@
 
 <ul>
 	<%@registrations.each do |r| %>
-		<li><%= mail_to(r.email, r.name)%>(<%=r.how_heard%>)</li>
+		<li>Name: <%=link_to r.name, event_registration_path(@event,r.id)%></li><br/>
+		<li>Email: <%= r.email%></li><br/>
+		<li>How_Heard: <%= r.how_heard%></li><br/>
+		s<hr>
 	<% end %>
 </ul>
+
+

@@ -1,0 +1,19 @@
+<h1>You are registered for <%=link_to @event.name, @event %></h1>
+
+<article>
+	<header>
+		<h1>Name: <%= @registration.name %></h1>
+	</header>
+	<h3>Email:</h3>
+	<p>
+		<%= @registration.email%>
+	</p>
+	<h3>How_Heard:</h3>
+	<P>
+		<%= @registration.how_heard %>
+	</P>
+
+	<%= link_to "Edit", edit_event_registration_path(@event,@registration) %> |
+	<%= link_to "Delete", event_registration_path(@event,@registration), method: :delete, data: {confirm: "Are you sure?"} %>
+
+</article>

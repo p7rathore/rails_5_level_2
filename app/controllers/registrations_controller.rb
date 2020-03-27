@@ -5,6 +5,10 @@ class RegistrationsController < ApplicationController
 		@registrations = @event.registrations
 	end
 
+	def show
+		@registration = Registration.find(params[:id])
+	end
+
 	def new
 		@registration = @event.registrations.new
 	end
@@ -17,6 +21,26 @@ class RegistrationsController < ApplicationController
 			render :new 
 		end
 	end
+
+	def edit
+		@registration = Registration.find(params[:id])
+	end
+
+	def update
+		@registration = Registration.find(params[:id])
+		if @registration.update(registration_params)
+			redirect_to event_registration_path(@event,@registration), notice: "successfully Updated!"
+		else
+			render :edit
+		end
+	end
+
+	def destroy
+		@registration = Registration.find(params[:id])
+		@registration.destroy
+		redirect_to event_registrations_path(@event), notice: "Your registration delete successfully"
+	end
+
 
 	private
 
