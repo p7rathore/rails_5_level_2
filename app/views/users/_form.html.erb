@@ -1,0 +1,28 @@
+<%= form_for(@user) do |f|%>
+	<p>
+		<%=f.label :name %><br/>
+		<%= f.text_field :name, size: 40, autofocus: true %>
+	</p>
+
+	<p>
+		<%=f.label :email %><br/>
+		<%= f.text_field :email, size: 40 %>
+	</p>
+
+	<p>
+		<%=f.label :password %><br/>
+		<%= f.password_field :password, size: 40 %>
+	</p>
+
+	<p>
+		<%=f.label :password_confirmation, "Confirme Password" %><br/>
+		<%= f.password_field :password_confirmation, size: 40 %>
+	</p>
+
+	<% if @user.new_record? %>
+		<%=f.submit "Create Account" %>	
+	<%else%>
+		<%=f.submit "Update Account" %>
+	<%end%>	
+	| <%= link_to "Cancel", events_path %>
+<%end%>
