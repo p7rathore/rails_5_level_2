@@ -3,8 +3,12 @@
 
   <nav style="float: right";>
   	<h1>
-  		<%= link_to "SignUp", signup_path %> |
-  		<%= link_to "SignIn", signin_path %> 
+  		<% if current_user %>
+  			<%=link_to current_user.name,current_user %>|
+  		<%else%>
+  			<%= link_to "SignUp", signup_path %> |
+	  		<%= link_to "SignIn", signin_path %> 
+	  	<%end%>	
   	</h1>
   </nav>
 </header>
