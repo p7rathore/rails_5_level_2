@@ -21,7 +21,6 @@
 			<%@liked_events.each do |like_event| %>
 				<li>
 					<%= link_to like_event.name, like_event %>
-					(<%=time_ago_in_words(like_event.created_at)%> ago)
 				</li>
 			<%end%>
 		</ul>

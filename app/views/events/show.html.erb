@@ -35,7 +35,11 @@
 			<%end%>
 		</p>
 	<%end%>
-
+	<% if @current_like %>
+		<%= button_to 'Unlike', event_like_path(@event,@current_like), method: :delete%>
+	<%else%>	
+		<%= button_to 'Like', event_likes_path(@event)%>
+	<%end%>
 	<%= link_to "who's registered?", event_registrations_path(@event) %><hr>
 
 </article>
