@@ -1,3 +1,4 @@
+<% content_for(:title, @event.name) %>
 <article>
 	<header>
 		<%= image_for(@event) %>
@@ -25,28 +26,33 @@
 	<p>
 		<%= pluralize(@event.capacity, 'spot') %>
 	</p>
-	
-	<h3>Category:</h3>
-	<p>
-		<ul>
-			<%@categories.each do |category|%>
-				<li>
-					<%=category.name%>
-				</li>	
-			<%end%>
-		</ul>
-	</p>
 
-
-	<%if @likers.any? %>
-		<h3><%= pluralize(@likers.size,'Like') %></h3>
+	<% content_for(:side) do %>	
+		<h3>Category:</h3>
 		<p>
-			Likers:<br/>
-			<%@likers.each do |user| %>
-				<%=link_to  user.name, user%>
-			<%end%>
+			<ul>
+				<%@categories.each do |category|%>
+					<li>
+						<%=category.name%>
+					</li>	
+				<%end%>
+			</ul>
 		</p>
-	<%end%>
+
+	
+		<h3>Likers:</h3>
+		<%if @likers.any? %>
+			<p>
+				<ul>
+					<%@likers.each do |user| %>
+						<li>	
+							<%=link_to  user.name, user%>
+						</li>	
+					<%end%>
+				</ul>	
+			</p>
+		<%end%>
+	<%end%>	
 	<% if @current_like %>
 		<%= button_to 'Unlike', event_like_path(@event,@current_like), method: :delete%>
 	<%else%>	
