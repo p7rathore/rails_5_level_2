@@ -12,6 +12,7 @@ class EventsController < ApplicationController
 		if current_user
 			@current_like = current_user.likes.find_by(event_id: @event.id)
 		end
+		@categories = @event.categories
 	end
 
 	def edit
@@ -22,7 +23,6 @@ class EventsController < ApplicationController
 	def update
 		@event = Event.find(params[:id])
 		if ( @event.update(event_params) )
-			# flash[:notice] = "Event successfully updated!"
 			redirect_to @event, notice: "Event successfully updated!" 
 		else
 			render :edit
@@ -51,6 +51,6 @@ class EventsController < ApplicationController
 
 	private 
 		def event_params
-			params.require(:event).permit(:name, :description, :location, :price, :starts_at, :image_file_name, :capacity)
+			params.require(:event).permit(:name, :description, :location, :price, :starts_at, :image_file_name, :capacity, category_ids: [])
 		end 
 end

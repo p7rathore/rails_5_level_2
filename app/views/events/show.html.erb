@@ -26,12 +26,24 @@
 		<%= pluralize(@event.capacity, 'spot') %>
 	</p>
 	
+	<h3>Category:</h3>
+	<p>
+		<ul>
+			<%@categories.each do |category|%>
+				<li>
+					<%=category.name%>
+				</li>	
+			<%end%>
+		</ul>
+	</p>
+
+
 	<%if @likers.any? %>
 		<h3><%= pluralize(@likers.size,'Like') %></h3>
 		<p>
 			Likers:<br/>
 			<%@likers.each do |user| %>
-				<%=link_to  user.name, user%> ,
+				<%=link_to  user.name, user%>
 			<%end%>
 		</p>
 	<%end%>
