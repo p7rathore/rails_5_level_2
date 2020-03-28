@@ -14,7 +14,20 @@
 			<%end%>
 		</ul>	
 	<%end%>	
+
+	<%if @liked_events.any?%>
+		<h3>Liked Events</h3>
+		<ul>
+			<%@liked_events.each do |like_event| %>
+				<li>
+					<%= link_to like_event.name, like_event %>
+					(<%=time_ago_in_words(like_event.created_at)%> ago)
+				</li>
+			<%end%>
+		</ul>
+	<%end%>			
 </article>
+
 <% if current_user?(@user) %>
 	<%= link_to  "Edit Account", edit_user_path(@user) %> | 
 	<%= link_to  "Delete Account", user_path(@user), method: :delete, data: {confirm: "Are you sure?"} %>

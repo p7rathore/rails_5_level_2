@@ -12,6 +12,8 @@ class Event < ApplicationRecord
 	} 
 
 	has_many :registrations, dependent: :destroy 
+	has_many :likes, dependent: :destroy
+	has_many :likers, through: :likes, source: :user
 
 	def free?
 		price.blank? || price.zero? #we also write price == nil || price == 0
