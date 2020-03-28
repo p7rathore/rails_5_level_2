@@ -3,6 +3,17 @@
 		<h1><%= @user.name%></h1>
 		<h5><%= @user.email%></h5>
 	</header>
+	<% if @registrations.any? %>
+		<h3>Registered For</h3>
+		<ul>
+			<% @registrations.each do |registration|%>
+				<li>
+					<%= link_to registration.event.name, registration.event %>
+					(<%= time_ago_in_words(registration.created_at) %> ago)			
+				</li>
+			<%end%>
+		</ul>	
+	<%end%>	
 </article>
 <% if current_user?(@user) %>
 	<%= link_to  "Edit Account", edit_user_path(@user) %> | 

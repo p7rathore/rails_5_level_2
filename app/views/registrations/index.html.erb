@@ -2,10 +2,10 @@
 
 <ul>
 	<%@registrations.each do |r| %>
-		<li>Name: <%=link_to r.name, event_registration_path(@event,r.id)%></li><br/>
-		<li>Email: <%= r.email%></li><br/>
-		<li>How_Heard: <%= r.how_heard%></li><br/>
-		s<hr>
+		<li><%=link_to r.user.name, r.user %> |
+		  <%= time_ago_in_words(r.created_at) %> ago
+		  (<%= r.how_heard%>)
+		 </li>
 	<% end %>
 </ul>
 
