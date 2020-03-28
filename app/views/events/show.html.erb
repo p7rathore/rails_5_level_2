@@ -30,8 +30,8 @@
 
 </article>
 <%=register_link(@event) %> |
-
-<%= link_to "Edit", edit_event_path(@event) %> |
-<%= link_to "Delete", event_path(@event), method: :delete, data: {confirm: "Are you sure?"} %><br/>
-
+<%if current_user_admin? %>
+	<%= link_to "Edit", edit_event_path(@event) %> |
+	<%= link_to "Delete", event_path(@event), method: :delete, data: {confirm: "Are you sure?"} %><br/>
+<%end%>
 (<%= pluralize(@event.spots_left, 'spot') %> available)
