@@ -20,9 +20,9 @@ class Event < ApplicationRecord
 	scope :past, -> {where('starts_at < ?', Time.now).order(:starts_at)}# we slso write order("starts_at") in place of order(:starts_at) 
 	scope :upcoming, -> {where("starts_at >= ?", Time.now).order(:starts_at)}# we slso write order("starts_at") in place of order(:starts_at) 
     scope :free, -> {upcoming.where(price: 0).order(:name)}# we slso write order("name") in place of order(:name) 
-    # scop :recent, -> {past.limit(3)} #its's static scop without parametter
-    #scop recent, ->(max=3){past.limit(max)} # its's static scop with parametter
-    scope :recent, ->(max){past.limit(max)}  #it's a dinamic scop 
+    # scope :recent, -> {past.limit(3)} #its's static scop without parametter
+    scope :recent, ->(max=3){past.limit(max)} # its's static scop with parametter
+    # scope :recent, ->(max){past.limit(max)}  #it's a dinamic scop 
 	def free?
 		price.blank? || price.zero? #we also write price == nil || price == 0
 	end
