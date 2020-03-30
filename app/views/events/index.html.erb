@@ -4,7 +4,7 @@
 	<article>
 		<header>
 			<%= image_for(event) %><br/>	
-			<strong><%= link_to event.name, event %></strong>
+			<strong> <%=link_to(event.name, event_path(event)) %></strong>
 		</header>
 		<p>
 			<%= truncate(event.description, length: 27, separator: ' ') %>

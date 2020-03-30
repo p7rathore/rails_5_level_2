@@ -1,5 +1,7 @@
 class Event < ApplicationRecord
-	validates :name, :location, :starts_at, presence: true 	
+	validates :name, presence: true, uniqueness: true
+	validates :location, :starts_at, presence: true 
+	validates :slug, uniqueness: true		
 
 	validates :description, length: {minimum: 15}
 
@@ -16,6 +18,10 @@ class Event < ApplicationRecord
 	has_many :likers, through: :likes, source: :user
 	has_many :categorizations, dependent: :destroy
 	has_many :categories, through: :categorizations
+
+
+
+	before_validation :generate_slug 
 
 	scope :past, -> {where('starts_at < ?', Time.now).order(:starts_at)}# we slso write order("starts_at") in place of order(:starts_at) 
 	scope :upcoming, -> {where("starts_at >= ?", Time.now).order(:starts_at)}# we slso write order("starts_at") in place of order(:starts_at) 
@@ -38,6 +44,18 @@ class Event < ApplicationRecord
 
 	def sold_out?
 		spots_left.zero?
+	end
+
+
+
+	def generate_slug
+		self.slug  ||= name.parameterize if name
+	end
+
+	def to_param
+	# 	# "#{id}-#{name.parameterize}" 
+	# 	name.parameterize #we also write "#{name.parameterize}"
+		slug
 	end
 
 
