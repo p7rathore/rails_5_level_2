@@ -23,20 +23,14 @@ class Event < ApplicationRecord
 
 	before_validation :generate_slug 
 
-	scope :past, -> {where('starts_at < ?', Time.now).order(:starts_at)}# we slso write order("starts_at") in place of order(:starts_at) 
-	scope :upcoming, -> {where("starts_at >= ?", Time.now).order(:starts_at)}# we slso write order("starts_at") in place of order(:starts_at) 
-    scope :free, -> {upcoming.where(price: 0).order(:name)}# we slso write order("name") in place of order(:name) 
-    # scope :recent, -> {past.limit(3)} #its's static scop without parametter
-    scope :recent, ->(max=3){past.limit(max)} # its's static scop with parametter
-    # scope :recent, ->(max){past.limit(max)}  #it's a dinamic scop 
+	scope :past, -> { where('starts_at < ?', Time.now).order(:starts_at) }
+	scope :upcoming, -> { where("starts_at >= ?", Time.now).order(:starts_at) }
+    scope :free, -> { upcoming.where(price: 0).order(:name) }
+    scope :recent, ->(max=3){ past.limit(max) } 
+    
 	def free?
-		price.blank? || price.zero? #we also write price == nil || price == 0
+		price.blank? || price.zero? 
 	end
-
-	# def self.upcoming
-	# 	# where("starts_at >= ?", 15.days.ago).order("starts_at")
-	# 	where("starts_at >= ?", Time.now).order(:starts_at) # we also write like this where("starts_at >= ?",Time.now).order("starts_at")
-	# end		
 
 	def spots_left
 		capacity - registrations.size
@@ -53,8 +47,6 @@ class Event < ApplicationRecord
 	end
 
 	def to_param
-	# 	# "#{id}-#{name.parameterize}" 
-	# 	name.parameterize #we also write "#{name.parameterize}"
 		slug
 	end
 
