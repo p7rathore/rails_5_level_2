@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 		 	
 	# get "events/:scope" => "events#index", constraints:{ scope:/past|free|recent/} #2) type with constraints
 	
-	get "events/filter/:scope" => "events#index" #3) type 
+	get "events/filter/:scope" => "events#index", as: :filtered_events # we asle wirte as: "filtered_events"#3) type 
 
 	resources :events do
 		resources :registrations
